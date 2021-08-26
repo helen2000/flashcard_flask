@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+
+
+{% block head%}
+<title>Pack: EDIT</title>
+<h1>{{pack.name}}</h1>
+{% endblock%}
+{% block body%}
+<form action="/editPack/{{pack.id}}" method="POST">
+    <label>Pick a new name for the {{pack.name}} pack</label><br/>
+    <input type="text" id="pname" name="pname" value="{{pack.name}}"><br/>
+    <input type="submit" value="Submit">
+  </form>
+{% endblock%}
