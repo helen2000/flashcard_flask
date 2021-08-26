@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+
+
+{% block head%}
+<h1>{{pack.name}}</h1>
+<title>{{pack.name}}</title>
+{% endblock%}
+
+{% block body%}
+<div>
+    <button>PLAY PACK</button>
+    <br/>
+    <input type="text" placeholder="Search..">
+    <br/>
+    <table>
+        <tr>
+            <th>number</th>
+            <th>front</th>
+            <th>back</th>
+            <th>actions</th>
+        </tr>
+        {% for each in cards %}
+            <tr>
+                <th>{{each.id}}</th>
+                <th>{{each.front}}</th>
+                <th>{{each.back}}</th>
+               
+                <th>
+                    <a href="/delete/{{each.id}}"> DELETE</a><br/>
+                    <a href="/update/{{each.id}}"> UPDATE</a>
+                </th>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+
+
+{% endblock%}

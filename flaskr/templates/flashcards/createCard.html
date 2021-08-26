@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+
+
+{% block head%}
+<title>FLASHCARD: MAKE</title>
+<h1>Make a new flashcard</h1>
+{% endblock%}
+{% block body%}
+<form action="/create" method="POST">
+    <label >Front of Card</label>
+    <textarea id="front-input" name="front-input" rows="4" cols="50"></textarea>
+    <br/>
+    <textarea id="back-input"" name="back-input"" rows="4" cols="50"></textarea>
+    <br/>
+    <input type="submit" value="Submit">
+  </form>
+{% endblock%}
