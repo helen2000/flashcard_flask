@@ -1,0 +1,30 @@
+-- Initialize the database.
+-- Drop any existing data and create empty tables.
+
+DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS pack;
+DROP TABLE IF EXISTS cards;
+
+CREATE TABLE user (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  username TEXT UNIQUE NOT NULL,
+  password TEXT NOT NULL
+);
+
+CREATE TABLE pack (
+  id INTEGER PRIMARY KEY,
+  author_id INTEGER NOT NULL,
+  pname TEXT NOT NULL,
+  public BOOLEAN NOT NULL DEFAULT false,
+  created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (author_id) REFERENCES user (id)
+);
+
+CREATE TABLE cards (
+  id INTEGER PRIMARY KEY,
+  pack_id INTEGER NOT NULL,
+  created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  front TEXT NOT NULL,
+  back TEXT NOT NULL,
+  FOREIGN KEY (pack_id) REFERENCES pack (id)
+);

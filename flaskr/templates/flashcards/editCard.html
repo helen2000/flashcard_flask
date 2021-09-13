@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+
+
+{% block head%}
+<title>Card: EDIT</title>
+<h1>Card: EDIT</h1>
+{% endblock%}
+{% block body%}
+
+  <form method="POST">
+    <label >Front of Card</label><br/>
+    <textarea id="front-input" name="front-input" rows="4" cols="50" value="{{card.front}}">{{card.front}}</textarea>
+    <br/>
+    <label >Back of Card</label><br/>
+    <textarea id="back-input" name="back-input" rows="4" cols="50" value="{{card.back}}">{{card.back}}</textarea>
+    <br/>
+    <input type="submit" value="Submit">
+  </form>
+{% endblock%}

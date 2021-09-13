@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+
+{% block head%}
+<h1>Home page</h1>
+
+{% endblock%}
+{% block body%}
+<p>Here you can see the packs you have already made or make a new one</p>
+<form action="/create-pack">
+  <input type="submit" value="Add a pack" />
+</form>
+<table>
+    <tr>
+        <th>Pack Name</th>
+    </tr>
+    {% for pack in packs %}
+    <tr>
+      <th><a href="/{{pack.id}}-pack-view}">{{pack.pname}}</a></th>
+      <th><a>{{pack.username}}</a></th>
+      <th><a>{{pack.public}}</a></th>
+      <th>
+       
+        <form action="/{{pack.id}}-pack/edit">
+          <input type="submit" value="Edit">
+        </form>
+        <form action="{{ url_for('flashcard.delete', id=pack['id']) }}" method="POST">
+          <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+        </form>
+      </th>  
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock%}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% block head%}
+<title>FLASHCARD: PLAY</title>
+<h1>{{card.pname}}</h1>
+{% endblock%}
+
+
+{% block body%}
+<p>{{card.back}}</p>
+<form action="/{{card.pname}}-{{card.id}}-card-front">
+    <input type="submit" value="flip">
+</form>
+<form action="/{{card.pname}}-{{card.id+1}}-card-front">
+    <input type="submit" value="next">
+</form>
+<form action="/{{card.pack_id}}-pack-view}">
+    <input type="submit" value="home">
+</form>
+{% endblock%}

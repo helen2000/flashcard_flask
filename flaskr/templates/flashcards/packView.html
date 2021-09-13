@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+
+
+{% block head%}
+<h1>{{pack.pname}}</h1>
+<title>{{pack.pname}}</title>
+{% endblock%}
+
+{% block body%}
+<div>
+    {% if cards != [] %}
+        <form action="/{{pack.pname}}-{{cards[0].id}}-card-front">
+            <input type="submit" value="Play pack">
+        </form>
+    {% else %}
+        <form>
+            <input type="submit" value="Play pack" onclick="return confirm('You need to add cards to the pack before you can play it');">
+        </form>
+    {% endif %}
+    <br/>
+    <form action="/{{pack.id}}-create-card">
+        <input type="submit" value="Add Card">
+    </form>
+    <input type="text" placeholder="Search..">
+    <br/>
+    <table>
+        <tr>
+            
+            <th>front</th>
+            <th>back</th>
+            <th>actions</th>
+        </tr>
+        {% for each in cards %}
+             <tr>
+             <!--   <th>{{each.id}}</th>-->
+                <th>{{each.front}}</th>
+                <th>{{each.back}}</th>
+               
+                <th>
+                    <form action="/{{pack.id}}-{{each.id}}-card/edit">
+                        <input type="submit" value="Edit">
+                    </form>
+                    <form action="{{ url_for('flashcard.card_delete', packid=pack['id'], cardid = each['id']) }}" method="POST">
+                        <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+                      </form>
+                   
+                    
+                </th>
+            </tr> 
+        {% endfor %}
+    </table>
+</div>
+
+
+{% endblock%}
